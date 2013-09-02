@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/main.css" rel="stylesheet">
+
+	<script src="phonegap.js"></script>
+
+	<title>RiBus - Raspored linija Autotroleja</title>
+
+</head>
+<body onload="indexPage()">
+
+<div class="container">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+	      <span class="sr-only">Toggle navigation</span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="index.html"><img src="img/logo.png" id="logo"></span> RiBus</a>
+	  </div>
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse navbar-ex1-collapse">
+	    <ul class="nav navbar-nav">
+	      	<li class="active"><a href="index.html">Početna</a></li>
+	      	<li><a href="schedule.html">Vozni redovi</a></li>
+	      	<li><a href="station.html">Dodaj favorite</a></li>
+	      	<li><a href="favorites.html">Uredi favorite</a></li>
+	    </ul>
+	  </div><!-- /.navbar-collapse -->
+	</nav>
+		<div class="bs-docs-section">
+			<ol class="breadcrumb" id="mainTimer">
+				Nema favorita...
+			</ol>
+		</div>
+		
+
+		<div class="bs-docs-section">
+			<div class="jumbotron">
+			  <div class="container">
+		    	<div class="clocks text-center">
+			    	<h1><a href="station.html"><span class="glyphicon glyphicon-plus"></span></a></h1>
+			    	<h3>...dodajte favorite.</h3>
+			    	<br>
+			    </div>
+			    <p>
+			    	<a href="station.html" class="btn btn-success btn-sm pull-right" id="save-bookmark"><span class="glyphicon glyphicon-plus"></span></a>
+			    </p>
+			  </div>
+			</div>
+		</div>
+
+		<div class="bs-docs-section">
+			<table class="table table-striped index">
+				<thead>
+					<tr>
+						<th>Br.</th>
+						<th>Smjer</th>
+						<th></th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+
+	<div class="bs-docs-section">
+		<table class="table table-bordered table-striped schedule text-center">
+			<thead>
+				<tr>
+					<th>Sati</th>
+					<th id="showBody" colspan="6">Minute<span class="glyphicon glyphicon-chevron-up pull-right"></span><span class="glyphicon glyphicon-chevron-down pull-right"></span></th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+</div>
+	
+	<!-- JavaScript links -->
+
+	<script type="text/javascript">
+		//window.localStorage.clear();
+	</script>
+	
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/mustache.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
+</html>

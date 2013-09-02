@@ -1,0 +1,234 @@
+{
+	"Linija 1":{
+		"Pećine - Bivio":{
+			"Bivio": 3,
+			"Pećine": 45
+		},
+		"Bivio - Pećine":{
+			"Bivio": 3,
+			"Pećine": 45
+		}
+	},
+	"Linija 1A":{
+		"A.K.Miošića - Marčeljeva Draga":{
+			"Marčeljeva Draga": 3,
+			"A.K.Miošića": 45
+		},
+		"Marčeljeva Draga - A.K.Miošića":{
+			"Marčeljeva Draga": 3,
+			"A.K.Miošića": 45
+		}
+	},
+	"Linija 1B":{
+		"Tower - Strmica":{
+
+			"Strmica": 3,
+			"Tower": 45
+		},
+		"Strmica - Tower":{
+
+			"Strmica": 3,
+			"Tower": 45
+		}
+	},
+	"Linija 2":{
+		"Trsat - Srdoči":{
+			"Srdoči": 3,
+			"Trsat": 45
+		},
+		"Srdoči - Trsat":{
+			"Srdoči": 3,
+			"Trsat": 45
+		}
+	},
+	"Linija 2A":{
+		"A.K.Miošića - Ivana Zavidića":{
+			"Ivana Zavidića": 3,
+			"A.K.Miošića": 45
+		},
+		"Ivana Zavidića - A.K.Miošića":{
+			"Ivana Zavidića": 3,
+			"A.K.Miošića": 45
+		}
+	},
+	"Linija 3":{
+		"A.K.Miošića - Grbci":{
+			"Grbci": 3,
+			"A.K.Miošića": 45
+		},
+		"Grbci - A.K.Miošića":{
+			"Grbci": 3,
+			"A.K.Miošića": 45
+		}
+	},
+	"Linija 3A":{
+		"Turkovo - Bezjaki":{
+			"Bezjaki": 3,
+			"Turkovo": 45
+		},
+		"Bezjaki - Turkovo":{
+			"Bezjaki": 3,
+			"Turkovo": 45
+		}
+	},
+	"Linija 4":{
+		"Fiumara - Brašćine":{
+			"Brašćine": 3,
+			"Fiumara": 45
+		},
+		"Brašćine - Fiumara":{
+			"Brašćine": 3,
+			"Fiumara": 45
+		}
+	},
+	"Linija 4A":{
+		"Brašćine - Pulac":{
+			"Pulac": 3,
+			"Brašćine": 45
+		},
+		"Pulac - Brašćine":{
+			"Pulac": 3,
+			"Brašćine": 45
+		}
+	},
+	"Linija 5":{
+		"Jelačićev Trg - Drenova":{
+			"Drenova": 3,
+			"Jelačićev Trg": 45
+		},
+		"Drenova - Jelačićev Trg":{
+			"Drenova": 3,
+			"Jelačićev Trg": 45
+		}
+	},
+	"Linija 5A":{
+		"Dražmička - Tibljaši":{
+			"Tibljaši": 3,
+			"Dražmička": 45
+		},
+		"Tibljaši - Dražmička":{
+			"Tibljaši": 3,
+			"Dražmička": 45
+		}
+	},
+	"Linija 5B":{
+		"Drenova - Petrici":{
+			"Petrici": 3,
+			"Drenova": 45
+		},
+		"Petrici - Drenova":{
+			"Petrici": 3,
+			"Drenova": 45
+		}
+	},
+	"Linija 6":{
+		"Novo Naselje - Podvežica":{
+			"Podvežica": 3,
+			"Novo Naselje": 45
+		},
+		"Podvežica - Novo Naselje":{
+			"Podvežica": 3,
+			"Novo Naselje": 45
+		}
+	},
+	"Linija 7":{
+		"Gornja Vežica - Pehlin":{
+			"Pehlin": 3,
+			"Gornja Vežica": 45
+		},
+		"Pehlin - Gornja Vežica":{
+			"Pehlin": 3,
+			"Gornja Vežica": 45
+		}
+	},
+	"Linija 7A":{
+		"Sveti Križ - Hosti":{
+			"Hosti": 3,
+			"Sveti Križ": 45
+		},
+		"Hosti - Sveti Križ":{
+			"Hosti": 3,
+			"Sveti Križ": 45
+		}
+	},
+	"Linija 8":{
+		"Kampus - Torpedo":{
+			"Torpedo": 3,
+			"Kampus": 45
+		},
+		"Torpedo - Kampus":{
+			"Torpedo": 3,
+			"Kampus": 45
+		}
+	},
+	"Linija 8A":{
+		"Jelačićev Trg - Kampus":{
+			"Kampus": 3,
+			"Jelačićev Trg": 45
+		},
+		"Kampus - Jelačićev Trg":{
+			"Kampus": 3,
+			"Jelačićev Trg": 45
+		}
+	},
+	"Linija 9":{
+		"Martina Kontuša - Sv. Kuzam":{
+			"Sv. Kuzam": 3,
+			"Martina Kontuša": 45
+		},
+		"Sv. Kuzam - Martina Kontuša":{
+			"Sv. Kuzam": 3,
+			"Martina Kontuša": 45
+		}
+	},
+	"Linija 13":{
+		"Delta - Grohovo":{
+			"Grohovo": 3,
+			"Delta": 45
+		},
+		"Grohovo - Delta":{
+			"Grohovo": 3,
+			"Delta": 45
+		}
+	},
+	"Linija 100":{
+		"A.K.Miošića - Cambierieva":{
+			"Cambierieva": 3,
+			"A.K.Miošića": 45
+		},
+		"Cambierieva - A.K.Miošića":{
+			"Cambierieva": 3,
+			"A.K.Miošića": 45
+		}
+	},
+	"Linija 101":{
+		"Trsat - Centar - Marčeljeva Draga":{
+			"Cambierieva": 3,
+			"A.K.Miošića": 45
+		},
+		"Marčeljeva Draga - Centar - Trsat":{
+			"Cambierieva": 3,
+			"A.K.Miošića": 45
+		}
+	},
+	"Linija 102":{
+		"Vežica - Centar - Srdoči":{
+			"Cambierieva": 3,
+			"A.K.Miošića": 45
+		},
+		"Srdoči - Centar - Vežica":{
+			"Cambierieva": 3,
+			"A.K.Miošića": 45
+		}
+	},
+	"Linija 103":{
+		"Jelačićev Trg - Drenova":{
+			"Cambierieva": 3,
+			"A.K.Miošića": 45
+		},
+		"Drenova - Jelačićev Trg":{
+			"Cambierieva": 3,
+			"A.K.Miošića": 45
+		}
+	}
+}
