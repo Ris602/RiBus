@@ -315,7 +315,7 @@ function Timer(){
 
 		try
 		{
-			this.getLineSchedule(this.line,this.direction);
+			this.lineScheule = this.getLineSchedule(timer.d);
 		}
 		catch(error)
 		{
@@ -389,7 +389,7 @@ function Timer(){
 
 		try
 		{
-			this.getLineSchedule(this.line,this.direction);
+			this.lineScheule = this.getLineSchedule(timer.d);
 		}
 		catch(error)
 		{
@@ -455,12 +455,12 @@ function Timer(){
 		}
 	}
 
-	this.getLineSchedule = function()
+	this.getLineSchedule = function(day)
 	{
-		if(this.d == 0){
+		if(day == 0){
 			this.lineSchedule = schedule[this.line][this.direction]["Nedjelja"];
 		}
-		else if(this.d == 6){
+		else if(day == 6){
 			this.lineSchedule = schedule[this.line][this.direction]["Subota"];
 		}
 		else{
