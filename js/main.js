@@ -214,7 +214,7 @@ Timer.prototype.getTime = function()
 	timer.m = date.getMinutes() + 1;
 	timer.s = date.getSeconds();
 
-	if ((timer.m - lines[this.line][this.direction][this.station]) < 0)
+	if (timer.m - lines[this.line][this.direction][this.station] < 0)
 	{
 		timer.m = (timer.m - lines[this.line][this.direction][this.station]) + 60;
 		timer.h = timer.h - 1;
