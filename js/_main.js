@@ -24,7 +24,7 @@ function indexPage()
 	if(typeof(window.localStorage) != 'undefined' && favorites != null)
 	{		
 		stationCountdown.startCountdowns('.clocks', favorites[1]);
-		$('#mainTimer').html('<li><a href="#">'+favorites[1]["line"]+'</a></li><li class="active">'+favorites[1]["direction"]+'</li>');
+		$('#mainTimer').html('<li><a href="#">'+favorites[1]["line"]+'</a></li><li class="active">'+favorites[1]["direction"]+'</li><li class="active">'+favorites[1]["station"]+'</li>');
 		$('.schedule tbody').hide();
 		$('.schedule thead tr th .glyphicon-chevron-up').hide();
 		for (favorite in favorites)
@@ -32,15 +32,10 @@ function indexPage()
 			countdown[i] = new Timer();
 			var lineNum = favorites[favorite].line;
 			lineNum = lineNum.replace("Linija ", "");
-			$(".index").append("<tr id='"+i+"'><td>" + lineNum + "</td><td>  " + favorites[favorite].direction + "  </td><td><span class='badge countdown"+ i +"'></span></td></tr>");
+			$(".index").append("<tr id='"+i+"'><td>" + lineNum + "</td><td>  " + favorites[favorite].direction + "  </td><td>  " + favorites[favorite].station + "  </td><td><span class='badge countdown"+ i +"'></span></td></tr>");
 			countdown[i].startCountdown('.countdown' + i, favorites[favorite]);
 			i++;
 		}     
-	}
-	else
-	{
-		$('.schedule').hide();
-		$('.index').hide();
 	}
 
 	$(".clocks").on('click', ".countdown:first-child" ,function(){
@@ -58,7 +53,7 @@ function indexPage()
 	$(".index tbody").on("click", "tr",function(){
 		var id = $(this).attr('id')
 		stationCountdown.startCountdowns('.clocks', favorites[id]);
-		$('#mainTimer').html('<li><a href="#">'+favorites[id]["line"]+'</a></li><li class="active">'+favorites[id]["direction"]+'</li>');
+		$('#mainTimer').html('<li><a href="#">'+favorites[id]["line"]+'</a></li><li class="active">'+favorites[id]["direction"]+'</li><li class="active">'+favorites[id]["station"]+'</li>');
 		$('.index tbody tr').each(function(){
 			$(this).removeClass('success');
 		});
@@ -66,7 +61,8 @@ function indexPage()
 
 		var data = new Object();
 		data.line = favorites[id]["line"];
-		data.direction = favorites[id]["direction"]
+		data.station = $("#station").val();
+		data.direction = favorites[id]["station"]
 		stationCountdown.showSchedule(data);
 	});
 
@@ -142,6 +138,7 @@ function favoritesPage()
 
 	if(typeof(window.localStorage) != 'undefined' && favorites != null)
 	{		
+		//$('#mainTimer').html('<li><a href="#">'+favorites[1]["line"]+'</a></li><li class="active">'+favorites[1]["direction"]+'</li><li class="active">'+favorites[1]["station"]+'</li>');
 		$('.check').hide();
 		showFavorites();
 		     
@@ -183,6 +180,7 @@ function showDirections(line)
 	var directions = lines[line];
 
 	$("#direction").html("<option>Smjer</option>");
+	$("#station").html("<option>Stanica</option>");
 
 	for(direction in directions)
 	{	
@@ -190,7 +188,27 @@ function showDirections(line)
 	}
 
 	$("#direction").on('change',function(){
-		showStationCountdown();
+			showStations(line,$("#direction").val());
+			$('#save-bookmark').addClass('disabled');
+	});
+
+}
+
+
+function showStations(line, direction)
+{
+	var stations = lines[line][direction];
+
+	
+	$("#station").html("<option>Stanica</option>");
+
+	for(station in stations)
+	{	
+		$("#station").append('<option value="' + station + '">' + station + '</option>');
+	}
+
+	$("#station").on('change',function(){
+			showStationCountdown();
 	});
 
 }
@@ -211,9 +229,7 @@ function showStationCountdown(){
 	else
 	{
 		$('#save-bookmark').addClass('disabled');
-	}
-
-	console.log(storage.checkFavorite(data));	
+	}	
 }
 
 
@@ -227,8 +243,16 @@ function getData(){
 	
 	var data = new Object();
 	data.line = $("#line").val();
+	data.station = $("#station").val();
 	data.direction = $("#direction").val();
 	return data;
+	/*
+	var data = new Object();
+	data.line = $("#btn-line").text();
+	data.station = $("#btn-station").text();
+	data.direction = $("#btn-direction").text();
+	return data;*/
+
 }
 
 function showDaySchedule(line, day){
@@ -280,7 +304,7 @@ function showFavorites(){
 		countdown[i] = new Timer();
 		var lineNum = favorites[favorite].line;
 		lineNum = lineNum.replace("Linija ", "");
-		$(".favorites").append("<tr id='"+i+"'><td>" + lineNum + "</td><td>" +favorites[favorite].direction + "</td></tr>");
+		$(".favorites").append("<tr id='"+i+"'><td>" + lineNum + "</td><td>" +favorites[favorite].direction + "</td><td>  " + favorites[favorite].station + "  </td></tr>");
 		i++;
 	}
 }
@@ -288,10 +312,12 @@ function showFavorites(){
 /*
 showTimer
 */
-var Timer = {
+function Timer(){
 
 	var line = null;
 	var direction = null;
+	var station = null;
+
 	var element = null;
 
 	var output = null;
@@ -310,12 +336,22 @@ var Timer = {
 		var date = new Date();
 		timer.d = date.getDay();	
 		timer.h = date.getHours();
-		timer.m = date.getMinutes();
+		timer.m = date.getMinutes() + 1;
 		timer.s = date.getSeconds();
+
+		if (timer.m - lines[this.line][this.direction][this.station] < 0)
+		{
+			timer.m = (timer.m - lines[this.line][this.direction][this.station]) + 60;
+			timer.h = timer.h - 1;
+		}
+		else
+		{
+			timer.m = timer.m - lines[this.line][this.direction][this.station];
+		}
 
 		try
 		{
-			this.getLineSchedule(this.line,this.direction);
+			this.getLineSchedule(timer.d);
 		}
 		catch(error)
 		{
@@ -349,6 +385,8 @@ var Timer = {
 				if (countdown.m - timer.m < 0){
 					countdown.m = countdown.m + 60;
 					countdown.h = countdown.h - 1;
+					console.log(countdown.m);
+					console.log(timer.m);
 				}
 				countdown.m = this.checkTime(countdown.m - timer.m);
 				countdown.h = countdown.h - timer.h;
@@ -384,12 +422,22 @@ var Timer = {
 		var date = new Date();
 		timer.d = date.getDay();	
 		timer.h = date.getHours();
-		timer.m = date.getMinutes();
+		timer.m = date.getMinutes() + 1;
 		timer.s = date.getSeconds();
+
+		if (timer.m - lines[this.line][this.direction][this.station] < 0)
+		{
+			timer.m = (timer.m - lines[this.line][this.direction][this.station]) + 60;
+			timer.h = timer.h - 1;
+		}
+		else
+		{
+			timer.m = timer.m - lines[this.line][this.direction][this.station];
+		}
 
 		try
 		{
-			this.getLineSchedule(this.line,this.direction);
+			this.getLineSchedule(timer.d);
 		}
 		catch(error)
 		{
@@ -455,12 +503,12 @@ var Timer = {
 		}
 	}
 
-	this.getLineSchedule = function()
+	this.getLineSchedule = function(day)
 	{
-		if(this.d == 0){
+		if(day == 0){
 			this.lineSchedule = schedule[this.line][this.direction]["Nedjelja"];
 		}
-		else if(this.d == 6){
+		else if(day == 6){
 			this.lineSchedule = schedule[this.line][this.direction]["Subota"];
 		}
 		else{
@@ -518,6 +566,7 @@ var Timer = {
 		this.element = element;
 		this.line = data.line;
 		this.direction = data.direction;
+		this.station = data.station;
 
 		this.getTime();
 		clearTimeout(this.timeout);
@@ -534,6 +583,7 @@ var Timer = {
 		this.element = element;
 		this.line = data.line;
 		this.direction = data.direction;
+		this.station = data.station;
 
 		this.getTimes();
 
@@ -578,6 +628,8 @@ var Timer = {
 		this.element = element;
 		this.line = data.line;
 		this.direction = data.direction;
+		this.station = data.station;
+
 
 		$('.schedule tbody').text("");
 
@@ -633,14 +685,14 @@ function Model(){
 		{
 			
 			var len = Object.keys(favorites).length;
-			favorites[len+1] = {"line" : data.line, "direction" : data.direction};
+			favorites[len+1] = {"line" : data.line, "direction" : data.direction, "station" : data.station};
 			$('#save-bookmark').addClass('disabled');
 			this.setStorage("favorites", favorites);
 			alert('Dodano u favorite.');
 		}
 		else
 		{
-			var favorites = {1:{"line" : data.line, "direction" : data.direction}};
+			var favorites = {1:{"line" : data.line, "direction" : data.direction, "station" : data.station}};
 			$('#save-bookmark').addClass('disabled');
 			this.setStorage("favorites", favorites);
 			alert('Dodano u favorite.');
@@ -774,9 +826,10 @@ function Model(){
 		{
 			for(favorite in favorites)
 			{
-				if(favorites[favorite].line == data.line && favorites[favorite].direction == data.direction)
+				if(favorites[favorite].line == data.line && favorites[favorite].direction == data.direction && favorites[favorite].station == data.station)
 				{
 					return true;
+					console.log(data.line + favorites[favorite].line);
 				}
 
 			}

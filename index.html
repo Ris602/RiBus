@@ -1,101 +1,325 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
+	<title>riBus</title>
 	<meta charset="utf8">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href="css/main.css" rel="stylesheet">
 
-	<script src="phonegap.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Jura&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
-	<title>RiBus - Raspored linija Autotroleja</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+	<link rel="stylesheet/less" type="text/x-less" href="css/main.less" />
+
+	<!--[if lt IE 9]>
+		<script type="text/javascript" src="js/html5shiv.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+	<![endif]-->
+
+	<script src="phonegap.js"></script>	
 
 </head>
 <body onload="indexPage()">
-
-<div class="container">
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-	  <!-- Brand and toggle get grouped for better mobile display -->
-	  <div class="navbar-header">
-	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-	      <span class="sr-only">Toggle navigation</span>
-	      <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	    </button>
-	    <a class="navbar-brand" href="index.html"><img src="img/logo.png" id="logo"></span> RiBus</a>
-	  </div>
-
-	  <!-- Collect the nav links, forms, and other content for toggling -->
-	  <div class="collapse navbar-collapse navbar-ex1-collapse">
-	    <ul class="nav navbar-nav">
-	      	<li class="active"><a href="index.html">Početna</a></li>
-	      	<li><a href="schedule.html">Vozni redovi</a></li>
-	      	<li><a href="station.html">Dodaj favorite</a></li>
-	      	<li><a href="favorites.html">Uredi favorite</a></li>
-	      	<li><a href="https://github.com/d1ofmany/RiBus">RiBus on Github</a></li>
-	    </ul>
-	  </div><!-- /.navbar-collapse -->
-	</nav>
-		<div class="bs-docs-section">
-			<ol class="breadcrumb" id="mainTimer">
-				Nema favorita...
-			</ol>
-		</div>
-		
-
-		<div class="bs-docs-section">
-			<div class="jumbotron">
-			  <div class="container">
-		    	<div class="clocks text-center">
-			    	<h1><a href="station.html"><span class="glyphicon glyphicon-plus"></span></a></h1>
-			    	<h3>...dodajte favorite.</h3>
-			    	<br>
-			    </div>
-			    <p>
-			    	<a href="station.html" class="btn btn-success btn-sm pull-right" id="save-bookmark"><span class="glyphicon glyphicon-plus"></span></a>
-			    </p>
-			  </div>
+	<div class="container">
+		<header>
+			<div class="header">
+				<div class="logo">
+					<img src="img/logo.png">
+					<a href="index.html"><h1>riBus</h1></a>	
+				</div>
+				<div class="menu-area">
+						<span class="menu"></span>
+					</div>
+				<div class="main-nav">
+						<nav>
+							<ul>
+								<li><a href="#">Kontakt</a></li>
+								<li><a href="#">Opcije</a></li>
+							</ul>
+						</nav>
+					</div>
 			</div>
-		</div>
+			<div class="nav">
 
-		<div class="bs-docs-section">
-			<table class="table table-striped index">
+				<nav>
+					<ul>
+						<li><a href="#">Kontakt</a></li>
+						<li><a href="#">Opcije</a></li>
+					</ul>
+				</nav>
+				
+				
+				<div class="nav-lines">
+					<table>
+						<tr>
+							<td>1</td>
+							<td class="clicked">
+								<p>R. dan</p>
+								<p>Subota</p>
+								<p>Nedjelja</p>
+							</td>
+							<td>1<small>B</small></td>
+							<td>2</td>
+						</tr>
+						<tr>
+							<td>2<small>A</small></td>
+							<td>3</td>
+							<td>3<small>A</small></td>
+							<td>4</td>
+						</tr>
+						<tr>
+							<td>4<small>A</small></td>
+							<td>5</td>
+							<td>5<small>A</small></td>
+							<td>5<small>B</small></td>
+						</tr>
+						<tr>
+							<td>6</td>
+							<td>7</td>
+							<td>7<small>A</small></td>
+							<td>8</td>
+						</tr>
+						<tr>
+							<td>8</td>
+							<td>8<small>A</small></td>
+							<td>9</td>
+							<td>13</td>
+						</tr>
+						<tr>
+							<td>100</td>
+							<td>101</td>
+							<td>102</td>
+							<td>103</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</header>
+		<div class="timer">
+			<div class="timer-nav pull-left">
+				<div class="circle">
+					<span class="prev"></span>
+				</div>
+			</div>
+			<div class="main-countdown pull-left">
+				<h2>00<small>:00</small></h2>
+			</div>
+			<div class="timer-nav pull-right">
+				<div class="circle">
+					<span class="next"></span>
+				</div>
+			</div>
+			<div id="timerInfo"><li>Nema dodanih favorita...</li></div>
+		</div>
+		<div class="nav-img">
+			<img src="img/lines_small.png">
+		</div>
+		<div class="lines">
+			<a href="#">
+				<img src="img/lines_small.png">
+			</a>
+		</div>
+		<div class="clear-fix"></div>
+		<div class="main">
+			<!--
+			<div class="item">
+				<div class="line">
+					<h3>6</h3>
+				</div>
+				<div class="direction-station">
+					<p>PODVEŽICA<span class="separator"></span><br class="newline">čandekova</p>
+				</div>
+				<div class="countdown">
+					<h3>01<small>:32</small></h3>
+					<span class="next"></span>
+				</div>
+			</div>
+			-->
+		</div>
+		<div class="tables">
+			<table class="schedule">
 				<thead>
 					<tr>
-						<th>Br.</th>
-						<th>Smjer</th>
-						<th></th>
+						<th>h</th>
+						<th colspan="7">Min</th>
 					</tr>
 				</thead>
+				<tbody>
+				<!--
+					<tr>
+						<td>05</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+					</tr>
+				-->
+				</tbody>
+				
+
 			</table>
 		</div>
-
-	<div class="bs-docs-section">
-		<table class="table table-bordered table-striped schedule text-center">
-			<thead>
-				<tr>
-					<th>Sati</th>
-					<th id="showBody" colspan="6">Minute<span class="glyphicon glyphicon-chevron-up pull-right"></span><span class="glyphicon glyphicon-chevron-down pull-right"></span></th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+		<div class="aside">
+			<div class="add-station">
+				<div class="item">
+					<h3>Stanice</h3>
+				</div>
+				
+				<div class="item">
+					<select class="select-line" id="line">
+				  		<option>Linija</option>
+					</select>
+				</div>
+				<div class="item">
+					<select class="select-direction" id="direction">
+					  	<option>Smjer</option>
+					</select>
+				</div>
+				<div class="item">
+					<select class="select-station" id="station">
+					  	<option>Stanica</option>
+					</select>
+				</div>
+				<div class="item">
+					<div class="item-container">
+						<button class="save">Save</button>
+					</div>
+				</div>				
+			</div>
+			<div class="lines-list">	
+				<div class="item">
+					<h3>Linije</h3>
+				</div>
+				<table>
+					<tr>
+						<td>1</td>
+						<td class="clicked">
+							<p>R. dan</p>
+							<p>Subota</p>
+							<p>Nedjelja</p>
+						</td>
+						<td>1<small>B</small></td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>2<small>A</small></td>
+						<td>3</td>
+						<td>3<small>A</small></td>
+						<td>4</td>
+					</tr>
+					<tr>
+						<td>4<small>A</small></td>
+						<td>5</td>
+						<td>5<small>A</small></td>
+						<td>5<small>B</small></td>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td>7</td>
+						<td>7<small>A</small></td>
+						<td>8</td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td>8<small>A</small></td>
+						<td>9</td>
+						<td>13</td>
+					</tr>
+					<tr>
+						<td>100</td>
+						<td>101</td>
+						<td>102</td>
+						<td>103</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="clear-fix"></div>
+		<div class="footer">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat.</p>
+		</div>
 	</div>
-</div>
+
+	<div class="save-button">
+		<img src="img/star.png">
+	</div>
+
+	<div class="add-button">
+		<span="add"><h2>+</h2></span>
+	</div>
 	
-	<!-- JavaScript links -->
+
+	<div class="overlay">
+		<div class="add-station">
+			<div class="item">
+				<h3>Dodaj Stanicu</h3>
+			</div>
+			
+			<div class="item">
+				<select class="select-line" id="small-line">
+			  		<option>Linija</option>
+				</select>
+			</div>
+			<div class="item">
+				<select class="select-direction" id="small-direction">
+				  	<option>Smjer</option>
+				</select>
+			</div>
+			<div class="item">
+				<select class="select-station" id="small-station">
+				  	<option>Stanica</option>
+				</select>
+			</div>
+			<div class="item">
+				<div class="item-container">
+					<button class="cancel">Cancel</button>
+				</div>
+				
+			</div>				
+		</div>
+	</div>
+
+	<div class="lines-img">
+		<img src="img/lines.png">
+	</div>
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+	<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+	<script type="text/javascript" src="js/less.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 
 	<script type="text/javascript">
-		//window.localStorage.clear();
+
+	$(document).ready(function(){
+		
+
+		/*
+		$('body').on('click', '.add-station', function(){
+			$('.add-station').toggle();
+		});*/
+		
+/*		
+		$(function()
+		{
+			settings = {};
+			$('.main').jScrollPane();
+		});
+
+		$('.main').resize(function(){ 
+		    var top = $('.main').css('top');
+		    $('.main').jScrollPaneRemove();
+		    $('.main').jScrollPane();
+		    $('.main').css('top',top);
+		});
+		*/
+	});
+
 	</script>
-	
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/mustache.js"></script>
-	<script src="js/main.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,266 @@
+@font-face
+{
+font-family: Biko;
+src: url('../fonts/Biko_Regular.otf');
+}
+
+h1,
+h2,
+h3,
+p
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 100;
+}
+
+body
+{
+	margin: 0 auto;
+	font-size: 100%;
+	background-color: #121212;
+}
+
+.container
+{
+	background-color: #121212;
+	width: 100%;
+}
+
+.header
+{
+	height: 2.5em;
+	background-color: #121212;
+	overflow: hidden;
+}
+
+.logo h1
+{
+	margin: 0 26px 0px 0px;
+	display: block;
+	float: right;
+
+	color: #f0c33a;
+
+	font-size: 2.625em; /* 42 / 16 */
+}
+
+.timer
+{
+	height: 10em;
+	background-color: #636363;
+
+	clear: both;
+	max-width: 480px;
+	margin: 0 auto;
+}
+
+.timer-nav
+{
+	position: relative;
+	top: 45%;
+	height: 100%;
+	width: 15%;
+}
+
+.circle
+{
+	width: 9px;
+	height: 9px;
+	padding: 3px;
+	display: block;
+	margin: 0 auto;
+	background-color: black;
+	border-radius: 100%;
+}
+
+.main
+{
+
+}
+
+.main-countdown
+{
+	display: block;
+	font-size: 60px;
+	width: 70%;
+	position: relative;
+	top: 25%;
+}
+
+.main-countdown	h2
+{
+	color: #f0c33a;
+	margin: 0;
+	text-align: center;
+	font-size: 1.2em;
+}
+
+small
+{
+	font-size: 0.6em;
+}
+
+.item
+{
+	height: 3.5em;
+	border-bottom: 2px solid #272727;
+}
+
+.line
+{
+	display: block;
+	width: 15%;
+	float: left;
+	height: 100%
+}
+
+.line h3
+{
+	color: white;
+	text-align: center;
+	font-size: 2.625em;
+	margin: 0.21428571em 0 0 0;
+}
+
+.direction-station
+{
+	display: block;
+	float: left;
+	width: 60%;
+	height: 100%;
+	color: white;
+}
+
+.direction-station p
+{
+	font-size: 0.8em;
+	margin: 2.7em 0 0 0;
+}
+
+.countdown
+{
+	display: block;
+	float: left;
+	width: 25%;
+	height: 100%;
+
+}
+
+.countdown h3
+{
+	
+	font-size: 1.5em;
+	color: #f0c33a;
+	margin: 1.1em 0 0 0;
+	display: inline-block;
+	float: left;
+}
+
+.countdown .prev
+{
+	float: left;
+	margin: 2.05em 0 0 1em;
+}
+
+
+
+
+.next
+{
+	position: relative;
+	display: block;
+	background-color: #f0c33a;
+	height: 3px;
+	width: 3px;
+	margin: 3px 0 3px 1px;
+}
+.next:after
+{
+	position: absolute;
+	display: block;
+	content: "";
+	left: 3px;
+	top: -3px;
+	width: 3px;
+	height: 3px;
+	border-top: 3px solid #f0c33a;
+	border-bottom: 3px solid #f0c33a;
+}
+
+.prev
+{
+	position: relative;
+	display: block;
+	background-color: #f0c33a;
+	height: 3px;
+	width: 3px;
+	margin: 3px 5px 3px;
+}
+.prev:before
+{
+	position: absolute;
+	display: block;
+	content: "";
+	left: -3px;
+	top: -3px;
+	width: 3px;
+	height: 3px;
+	border-top: 3px solid #f0c33a;
+	border-bottom: 3px solid #f0c33a;
+}
+
+.pull-left
+{
+	float:left;
+}
+
+.pull-right
+{
+	float: right;
+}
+
+@media screen and (min-width: 320px){
+
+.timer
+{
+	height: 15em;
+	background-color: #636363;
+
+	clear: both;
+}
+
+.main-countdown	h2
+{
+
+	font-size: 1.6em;
+}
+
+@media screen and (min-width: 420px){
+
+.timer
+{
+	height: 18em;
+	background-color: #636363;
+
+	clear: both;
+}
+
+.main-countdown	h2
+{
+
+	font-size: 2em;
+}
+
+}
+
+@media screen and (min-width: 960px){
+
+.container
+{
+	width: 90%;
+	margin: 0 auto;
+}
+
+}
+
+

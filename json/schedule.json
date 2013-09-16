@@ -1,6 +1,6 @@
 {
 	"Linija 1": {
-		"Pećine - Bivio": {
+		"Bivio": {
 			"Radni dan" : {
 				"5": { "a" : 10, "b": 30, "c": 46},
 				"6": { "a" : 0, "b": 16, "c": 27, "d": 40, "e": 54},
@@ -65,7 +65,7 @@
 		        "23": { "a" : 16, "b": 36}
 		    }
 	    },
-	    "Bivio - Pećine": {
+	    "Pećine": {
 			"Radni dan" : {
 				"5": { "a" : 10, "b": 32, "c": 47, "d": 59},
 				"6": { "a" : 15, "b": 31, "c": 47},
@@ -132,7 +132,7 @@
 	    }
 	},
 	"Linija 1A": {
-		"A.K.Miošića - Marčeljeva Draga": {
+		"Marčeljeva Draga": {
 			"Radni dan" : {
 				"4": { "a" : 39},
 				"5": { "a" : 9, "b": 42},
@@ -198,7 +198,7 @@
 		        "22": { "a" : 26, "b": 54}
 		    }
 	    },
-	    "Marčeljeva Draga - A.K.Miošića": {
+	    "A.K.Miošića": {
 			"Radni dan" : {
 				"5": { "a" : 5, "b": 35},
 				"6": { "a" : 10, "b": 39, "c": 57},
@@ -264,7 +264,7 @@
 	    }
 	},
 	"Linija 1B": {
-		"Tower - Strmica": {
+		"Strmica": {
 			"Radni dan" : {
 				"5": { "a" : 32},
 				"6": { "a" : 22},
@@ -291,7 +291,7 @@
 				"14": { "a" : 10}
 		    }
 		},
-		"Strmica - Tower": {
+		"Tower": {
 			"Radni dan" : {
 				"5": { "a" : 10, "b" : 50},
 				"6": { "a" : 39},
@@ -320,7 +320,7 @@
 	    } 
 	},
 	"Linija 2": {
-		"Trsat - Srdoči": {
+		"Srdoči": {
 			"Radni dan" : {
 				"5": { "a" : 5, "b": 15, "c": 26, "d": 39, "e" : 50, "f": 59},
 				"6": { "a" : 10, "b": 16, "c": 24, "d": 32, "e" : 39, "f": 46, "g": 53},
@@ -386,7 +386,7 @@
 		        "23": { "a" : 5, "b": 20, "c" : 40}
 		    }
 	    },
-	    "Srdoči - Trsat": {
+	    "Trsat": {
 			"Radni dan" : {
 				"5": { "a" : 5, "b": 17, "c": 29, "d": 41, "e" : 52},
 				"6": { "a" : 2, "b": 11, "c": 18, "d": 25, "e" : 32, "f": 39, "g": 46, "h": 54},
@@ -454,7 +454,7 @@
 	    }
 	},
 	"Linija 2A": {
-		"A.K.Miošića - Ivana Zavidića": {
+		"I.Zavidića": {
 			"Radni dan" : {
 				"5": { "a" : 30},
 				"6": { "a" : 0, "b": 30, "c": 51},
@@ -484,7 +484,7 @@
 				"16": { "a" : 15}
 		    }
 		},
-		"Ivana Zavidića - A.K.Miošića": {
+		"A.K.Miošića": {
 			"Radni dan" : {
 				"6": { "a" : 0, "b": 27, "c": 57},
 				"7": { "a" : 18},
@@ -514,7 +514,7 @@
 	    } 
 	},
 	"Linija 3": {
-	    "A.K.Miošića - Grbci": {
+	    "Grbci": {
 			"Radni dan" : {
 				"4": { "a": 55},
 				"5": { "a" : 15, "b": 35, "c": 55},
@@ -577,7 +577,7 @@
 		        "22": { "a" : 20}
 		    }
 	    },
-	    "Grbci - A.K.Miošića": {
+	    "A.K.Miošića": {
 			"Radni dan" : {
 				"5": { "a" : 10, "b": 29, "c": 46},
 				"6": { "a" : 4, "b": 25, "c": 46},
@@ -643,7 +643,7 @@
 	    }
 	},
 	"Linija 3A": {
-		"Turkovo - Bezjaki": {
+		"Bezjaki": {
 			"Radni dan" : {
 				"5": { "a" : 7, "b": 50},
 				"6": { "a" : 12, "b": 36, "c": 50},
@@ -689,7 +689,7 @@
 		        "21": { "a" : 0}
 		    }
 		},
-		"Bezjaki - Turkovo": {
+		"Jelačićev Trg": {
 			"Radni dan" : {
 				"5": { "a" : 0, "b": 13},
 				"6": { "a" : 6, "b": 20, "c": 43},
@@ -739,7 +739,7 @@
 	    } 
 	},
 	"Linija 4": {
-		"Fiumara - Brašćine": {
+		"Brašćine": {
 			"Radni dan" : {
 				"4": { "a" : 54},
 				"5": { "a" : 9, "b": 20, "c": 35, "d": 50},
@@ -806,7 +806,7 @@
 		        "22": { "a" : 9, "b": 27, "c" : 44}
 		    }
 	    },
-	    "Brašćine - Fiumara": {
+	    "Fiumara": {
 			"Radni dan" : {
 				"5": { "a" : 10, "b": 25, "c": 40, "d": 55},
 				"6": { "a" : 10, "b": 25, "c": 40, "d": 53},
@@ -872,7 +872,7 @@
 	    }
 	},
 	"Linija 4A": {
-		"Brašćine - Pulac": {
+		"Pulac": {
 			"Radni dan" : {
 				"4": { "a" : 50},
 				"5": { "a" : 10, "b": 24, "c": 55},
@@ -903,7 +903,7 @@
 				"15": { "a" : 15}
 		    }
 	    },
-	    "Pulac - Brašćine": {
+	    "Brašćine": {
 			"Radni dan" : {
 				"5": { "a" : 0, "b": 18, "c": 32},
 				"6": { "a" : 14, "b": 55},
@@ -935,7 +935,7 @@
 	    }
 	},
 	"Linija 5": {
-		"Jelačićev Trg - Drenova": {
+		"Drenova": {
 			"Radni dan" : {
 				"4": { "a" : 39, "b": 52},
 				"5": { "a" : 8, "b": 21, "c": 35, "d": 48},
@@ -1003,7 +1003,7 @@
 		        "23": { "a" : 0, "b": 22}
 		    }
 	    },
-	    "Drenova - Jelačićev Trg": {
+	    "Jelačićev Trg": {
 			"Radni dan" : {
 				"5": { "a" : 5, "b": 20, "c": 35, "d": 48},
 				"6": { "a" : 3, "b": 18, "c": 30, "d": 42, "e" : 52},
@@ -1071,7 +1071,7 @@
 	    }
 	},
 	"Linija 5A": {
-		"Dražmička - Tibljaši": {
+		"Tibljaši": {
 			"Radni dan" : {
 				"4": { "a" : 55},
 				"5": { "a" : 30},
@@ -1130,7 +1130,7 @@
 				"20": { "a" : 30}
 		    }
 	    },
-	    "Tibljaši - Dražmička": {
+	    "Dražmička": {
 			"Radni dan" : {
 				"5": { "a" : 5, "b": 45},
 				"6": { "a" : 15, "b": 40},
@@ -1190,7 +1190,7 @@
 	    }
 	},
 	"Linija 5B": {
-		"Drenova - Petrici": {
+		"Petrici": {
 			"Radni dan" : {
 				"5": { "a" : 21, "b": 57},
 				"6": { "a" : 28, "b": 47},
@@ -1218,7 +1218,7 @@
 				"14": { "a" : 23, "b": 48}
 		    }
 	    },
-	    "Petrici - Drenova": {
+	    "Drenova": {
 			"Radni dan" : {
 				"5": { "a" : 5, "b": 30},
 				"6": { "a" : 10, "b": 38, "c": 58},
@@ -1249,7 +1249,7 @@
 	    }
 	},
 	"Linija 6": {
-		"Podvežica - Novo Naselje": {
+		"Novo Naselje": {
 			"Radni dan" : {
 				"5": { "a" : 10, "b": 28, "c": 42, "d": 58},
 				"6": { "a" : 13, "b": 26, "c": 40, "d": 51},
@@ -1314,7 +1314,7 @@
 		        "23": { "a" : 12, "b": 22, "c": 40}
 		    }
 	    },
-	    "Novo Naselje - Podvežica": {
+	    "Podvežica": {
 			"Radni dan" : {
 				"5": { "a" : 10, "b": 28, "c": 44, "d": 59},
 				"6": { "a" : 13, "b": 28, "c": 37, "d": 46, "e": 57},
@@ -1381,7 +1381,7 @@
 	    }
 	},
 	"Linija 7": {
-		"Gornja Vežica - Pehlin": {
+		"Pehlin": {
 			"Radni dan" : {
 				"5": { "a" : 0, "b": 20, "c": 35, "d": 51},
 				"6": { "a" : 10, "b": 32, "c": 52},
@@ -1446,7 +1446,7 @@
 		        "23": { "a" : 15, "b": 45}
 		    }
 	    },
-	    "Pehlin - Gornja Vežica": {
+	    "Gornja Vežica": {
 			"Radni dan" : {
 				"5": { "a" : 5, "b": 19, "c" : 32, "d": 54},
 				"6": { "a" : 12, "b": 31, "c": 50},
@@ -1514,7 +1514,7 @@
 	    }
 	},
 	"Linija 7A": {
-		"Sveti Križ - Hosti": {
+		"Hosti": {
 			"Radni dan" : {
 				"5": { "a" : 10, "b": 28, "c" : 42},
 				"6": { "a" : 1, "b": 22, "c": 42},
@@ -1580,7 +1580,7 @@
 		        "23": { "a" : 5, "b": 35}
 		    }
 	    },
-	    "Hosti - Sveti Križ": {
+	    "Sveti Križ": {
 			"Radni dan" : {
 				"5": { "a" : 10, "b": 25, "c": 42},
 				"6": { "a" : 4, "b": 22, "c": 40},
@@ -1647,7 +1647,7 @@
 	    }
 	},
 	"Linija 8": {
-		"Kampus - Torpedo": {
+		"Torpedo": {
 			"Radni dan" : {
 				"5": { "a" : 32},
 				"6": { "a" : 2, "b": 37},
@@ -1694,7 +1694,7 @@
 				"15": { "a" : 30}
 		    }
 		},
-		"Torpedo - Kampus": {
+		"Kampus": {
 			"Radni dan" : {
 				"6": { "a" : 5, "b": 35},
 				"7": { "a" : 15, "b": 45},
@@ -1740,7 +1740,7 @@
 	    } 
 	},
 	"Linija 8A": {
-		"Jelačićev Trg - Kampus": {
+		"Kampus": {
 			"Radni dan" : {
 				"7": { "a" : 45},
 				"8": { "a" : 50},
@@ -1754,7 +1754,7 @@
 				"16": { "a" : 50}
 		    }
 		},
-		"Kampus - Jelačićev Trg": {
+		"Jelačićev Trg": {
 			"Radni dan" : {
 				"7": { "a" : 55},
 				"9": { "a" : 0},
@@ -1770,7 +1770,7 @@
 	    } 
 	},
 	"Linija 9": {
-		"Martina Kontuša - Sv. Kuzam": {
+		"Sv.Kuzam": {
 			"Radni dan" : {
 				"7": { "a" : 40},
 				"8": { "a" : 50},
@@ -1798,7 +1798,7 @@
 				"15": { "a" : 50}
 		    }
 		},
-		"Sv. Kuzam - Martina Kontuša": {
+		"Martina Kontuša": {
 			"Radni dan" : {
 				"8": { "a" : 24},
 				"9": { "a" : 10},
@@ -1827,7 +1827,7 @@
 	    } 
 	},
 	"Linija 13": {
-		"Delta - Grohovo": {
+		"Grohovo": {
 			"Radni dan" : {
 				"5": { "a" : 45},
 				"6": { "a" : 10, "b": 45},
@@ -1867,7 +1867,7 @@
 				"22": { "a" : 30}
 		    }
 		},
-		"Grohovo - Delta": {
+		"Delta": {
 			"Radni dan" : {
 				"5": { "a" : 20},
 				"6": { "a" : 5, "b": 25},
@@ -1906,7 +1906,7 @@
 	    } 
 	},
 	"Linija 100": {
-		"A.K.Miošića - Cambierieva": {
+		"Cambierieva": {
 			"Radni dan" : {
 				"6": { "a" : 30, "b": 45},
 				"7": { "a" : 2, "b": 18, "c": 34, "d": 50},
@@ -1951,7 +1951,7 @@
 				"17": { "a" : 0, "b": 30}
 		    }
 	    },
-	    "Cambierieva - A.K.Miošića": {
+	    "A.K.Miošića": {
 			"Radni dan" : {
 				"6": { "a" : 40, "b": 55},
 				"7": { "a" : 15, "b": 31, "c": 47},
@@ -1998,7 +1998,7 @@
 	    }
 	},
 	"Linija 101": {
-		"Trsat - Marčeljeva Draga": {
+		"Marčeljeva Draga": {
 		    "Subota" : {
 				"0": { "a" : 15},
 				"1": { "a" : 40},
@@ -2012,7 +2012,7 @@
 				"4": { "a" : 30}
 		    }
 	    },
-	    "Marčeljeva Draga - Trsat": {
+	    "Trsat": {
 		    "Subota" : {
 				"1": { "a" : 0},
 				"2": { "a" : 25},
@@ -2026,7 +2026,7 @@
 	    }
 	},
 	"Linija 102": {
-		"Vežica - Srdoči": {
+		"Srdoči": {
 		    "Subota" : {
 				"1": { "a" : 15},
 				"3": { "a" : 55},
@@ -2038,7 +2038,7 @@
 				"4": { "a" : 25}
 		    }
 	    },
-	    "Srdoči - Vežica": {
+	    "Vežica": {
 		    "Subota" : {
 				"0": { "a" : 30},
 				"2": { "a" : 10},
@@ -2052,7 +2052,7 @@
 	    }
 	},
 	"Linija 103": {
-		"Jelačićev Trg - Drenova": {
+		"Drenova": {
 		    "Subota" : {
 		    	"0": { "a" : 0},
 				"1": { "a" : 0},
@@ -2068,7 +2068,7 @@
 				"4": { "a" : 0}
 		    }
 	    },
-	    "Drenova - Jelačićev Trg": {
+	    "Jelačićev Trg": {
 		    "Subota" : {
 		    	"0": { "a" : 30},
 				"1": { "a" : 30},

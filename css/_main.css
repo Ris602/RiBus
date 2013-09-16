@@ -1,0 +1,71 @@
+body
+{
+	/*background-image: url('../img/gray_jean.png');*/
+	padding-top: 70px;
+	max-width: 480px;
+	margin: auto;
+
+}
+
+#logo
+{
+	width: 24px;
+	height: auto;
+}
+/*
+.navbar-brand
+{
+	font-family: myFont;
+}
+*/
+
+.clocks-container{
+	padding-bottom: 10%; 
+}
+
+.countdown{
+	margin: 0 auto;
+	text-align: center;
+	display: block;
+}
+
+.countdown:first-child{
+	margin-bottom: -2.5em;
+	margin-top: -2em;
+}
+
+.timer
+{
+	/*font-family: myFont;*/
+	font-size: 4em;
+	font-weight: lighter;
+}
+
+.bs-docs-section
+{
+	margin-top: 1.5em;
+
+}
+
+.schedule thead th:first-child
+{
+	width: 1em;
+}
+
+.index thead th:first-child,
+.favorites thead th:first-child,
+{
+	width: 1em;
+}
+
+.index tbody td:last-child
+{
+	text-align: right;
+}
+
+
+.last
+{
+	margin: 30% 0 0;
+}
+
