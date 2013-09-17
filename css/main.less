@@ -216,6 +216,11 @@ body
 	content:"//";
 }
 
+.main
+{
+	background-color: @mainHoverColor;
+}
+
 .lines
 {
 	display: none;
@@ -229,7 +234,7 @@ body
 	border-bottom: 1px solid @backgroundColor;
 	background-color: @mainColor;
 	overflow: hidden;
-
+	position: relative;
 }
 
 .main .item:hover
@@ -514,7 +519,6 @@ body
 	width: 45px;
 	height: 30px;
 	background-color: #034567;
-	font-size: 1.5em;
 	border-radius: 3px;
 	color:@textColor;
 	box-shadow: 2px 2px 2px black;
@@ -540,10 +544,8 @@ body
 
 .save-button img
 {
-	width: 12px;
-	height: auto;
 	margin-left: 12px;
-	margin-top: 10px;
+	margin-top: 9px;
 }
 
 .add-button:hover
@@ -558,9 +560,47 @@ body
 	box-shadow: 1px 1px 2px black;
 }
 
-.add-button h2
+.add-button img
 {
 	margin-left: 12px;
+	margin-top: 9px;
+}
+
+.favorite-buttons
+{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	z-index: 100;
+	background-color: @selectColor;
+	height: 100%;
+	width: 35%;
+}
+
+.favorite-buttons ul
+{
+	list-style: none;
+	width: 100%;
+	height: 100%;
+}
+
+
+
+.favorite-buttons li
+{
+	
+	height: 100%;
+	width: 24%;
+	float: right;
+	display: inline-block;
+	text-align: center;
+	padding-top: 18px;
+	border-left: 1px solid @backgroundColor;
+}
+
+.favorite-buttons li:first-child
+{
+	width: 46%;
 }
 
 .lines-img
@@ -730,6 +770,11 @@ MEDIA QUERIES
 		margin-top: 26px;
 	}
 
+	.favorite-buttons li
+	{
+		padding-top: 20px;
+	}
+
 	
 
 }
@@ -755,6 +800,8 @@ MEDIA QUERIES
 	{
 		margin: 8px 1% 0 0;
 	}
+
+
 
 	
 	.timer
@@ -817,18 +864,33 @@ MEDIA QUERIES
 		margin-right: 15%;
 	}
 
+	.favorite-buttons
+	{
+		width: 35%;
+	}
+
+	.favorite-buttons li
+	{
+		padding-top: 24px;
+	}
+
 	.add-button
 	{
 		top: 70px;
 		right: -10px;
 		width: 50px;
 		height: 40px;
-		font-size: 2.2em;
 	}
 
 	.add-button:hover
 	{
 		top: 71px;
+	}
+
+	.add-button img
+	{
+		margin-left: 15px;
+		margin-top: 14px;
 	}
 
 	.save-button
@@ -846,9 +908,8 @@ MEDIA QUERIES
 
 	.save-button img
 	{
-		width: 15px;
 		margin-left: 14px;
-		margin-top: 12px;
+		margin-top: 15px;
 	}
 
 	.star
@@ -885,6 +946,11 @@ MEDIA QUERIES
 		max-height: 570px;
 		float: left;
 		/*overflow-y: scroll; */
+	}
+
+	.main .schedule
+	{
+		display: none !important;
 	}
 
 	.main-countdown
@@ -934,6 +1000,16 @@ MEDIA QUERIES
 	.newline
 	{
 		display: block;
+	}
+
+	.favorite-buttons
+	{
+		width: 40%;
+	}
+
+	.favorite-buttons li
+	{
+		padding-top: 22px;
 	}
 
 
@@ -1062,6 +1138,11 @@ MEDIA QUERIES
 		margin-right: 17%;
 	}
 
+	.favorite-buttons
+	{
+		width: 35%;
+	}
+
 }
 
 @media screen and (min-width: 760px){
@@ -1087,6 +1168,10 @@ MEDIA QUERIES
 	.countdown
 	{
 		width: 27%;
+	}
+	.favorite-buttons
+	{
+		width: 30%;
 	}
 
 	.tables
@@ -1163,16 +1248,24 @@ MEDIA QUERIES
 		width: 47%
 	}
 
+	.favorite-buttons,
 	.countdown
 	{
 		width: 35%;
 	}
+
+
 
 	.aside
 	{
 		float: right;
 		width: 26.7%;
 		display: block;
+	}
+
+	.aside .add-station
+	{
+		display: none !important;
 	}
 
 

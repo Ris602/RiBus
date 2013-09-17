@@ -102,7 +102,6 @@ Favorites.prototype.moveFavorite = function(id, move)
 				this.setFavorite();
 				showFavorites();
 				selectID = id - 1;
-				$('#' + selectID).addClass('danger');
 			}
 		}
 		else
@@ -119,10 +118,11 @@ Favorites.prototype.moveFavorite = function(id, move)
 				this.favorites = newFavorites;
 				this.setFavorite();
 				showFavorites();
-				selectID = id + 1;
-				$('#' + selectID).addClass('danger');
+				selectID = id + 1;			
 			}
 		}
+
+		$('#' + selectID).addClass('selected');
 
 	}
 	
@@ -141,7 +141,6 @@ Favorites.prototype.removeFavorite = function(id)
 		if(Object.keys(this.favorites).length == 1)
 		{
 			window.localStorage.clear();
-	 	 	window.location.assign("favorites.html");
 		}
 		else
 		{
@@ -155,7 +154,6 @@ Favorites.prototype.removeFavorite = function(id)
 			}
 			this.favorites = newFavorites;
 			this.setFavorite();
-			window.location.assign("favorites.html");
 		}
 		
 
@@ -422,6 +420,7 @@ function indexPage()
 {
 	
 	countdown = [];
+	
 	mainCountdown = new Timer();
 
 	favorites = storage.getFavorites();
@@ -465,6 +464,7 @@ function indexPage()
 	////////////////////////////////
 
 	$(".main").on("click", ".item",function(){
+
 		var id = $(this).attr('id')
 		mainCountdown.startCountdown('.main-countdown', favorites[id]);
 		$('#timerInfo').html('<li>'+favorites[id]["line"]+'</li><li class="active">'+favorites[id]["direction"]+'</li><li class="active">'+favorites[id]["station"]+'</li>');
@@ -477,6 +477,24 @@ function indexPage()
 		data.line = favorites[id]["line"];
 		data.direction = favorites[id]["direction"]
 		mainCountdown.showSchedule(data);
+
+		if (!$(this).hasClass('favorites'))
+		{
+			$('.main .favorite-buttons').remove();
+			$('.item').each(function(){
+				$(this).removeClass('favorites');
+			});
+		}
+
+		if (!$(this).hasClass('schedules'))
+		{
+			$('.main .schedule').remove();
+			$('.item').each(function(){
+				$(this).removeClass('schedules');
+			});
+		}
+
+
 		
 	});
 	/*
@@ -487,11 +505,97 @@ function indexPage()
 	});
 	*/
 
+	var hammertime = $(".main").hammer();
+
+	hammertime.on("hold", ".item", function(ev) {
+
+		if (!$(this).hasClass('favorites'))
+		{
+			$('.main .schedule').remove();
+			$('.main .favorite-buttons').remove();
+
+			$(this).append('<div class="favorite-buttons"><ul><li id="remove"><img src="img/remove.png"></li><li id="up"><img src="img/up.png"></li><li id="down"><img src="img/down.png"></li></ul></div>');
+
+			var id = $(this).attr('id')
+			mainCountdown.startCountdown('.main-countdown', favorites[id]);
+			$('#timerInfo').html('<li>'+favorites[id]["line"]+'</li><li class="active">'+favorites[id]["direction"]+'</li><li class="active">'+favorites[id]["station"]+'</li>');
+			$('.item').each(function(){
+				$(this).removeClass('selected');
+			});
+			$(this).toggleClass('selected');
+			$(this).addClass('favorites');
+			$('.save-button').css('display', 'none');
+
+			data.line = favorites[id]["line"];
+			data.direction = favorites[id]["direction"]
+			mainCountdown.showSchedule(data);
+		}
+		else
+		{
+			$('.main .favorite-buttons').remove();
+			$('.item').each(function(){
+				$(this).removeClass('favorites');
+			});
+		}
+
+
+	});
+
+	hammertime.on("doubletap", ".item", function(ev) {
+
+		$('.main .favorite-buttons').remove();
+		$('.main .schedule').remove();
+		$('.item').each(function(){
+			$(this).removeClass('favorites');
+			$(this).removeClass('selected');
+			$(this).removeClass('schedules');
+		});
+
+	  	$(this).after('<table class="schedule"><thead><tr><th>h</th><th colspan="9">Min</th></tr></thead><tbody></tbody></table>');
+
+		var id = $(this).attr('id')
+		mainCountdown.startCountdown('.main-countdown', favorites[id]);
+		$('#timerInfo').html('<li>'+favorites[id]["line"]+'</li><li class="active">'+favorites[id]["direction"]+'</li><li class="active">'+favorites[id]["station"]+'</li>');
+		
+		$(this).toggleClass('selected');
+		$(this).toggleClass('schedules');
+		$('.save-button').css('display', 'none');
+
+		data.line = favorites[id]["line"];
+		data.direction = favorites[id]["direction"]
+		mainCountdown.showSchedule(data);
+
+		
+	});
+
+	hammertime.on("doubletap", ".schedule", function(ev) {
+		$('.main .schedule').remove();
+	});
+
+	$('.main').on('click', '#up', function(){
+		stopAll();
+		storage.moveFavorite($('.selected').attr('id'), 'up');
+	});
+	$('.main').on('click', '#down', function(){
+		stopAll();
+		storage.moveFavorite($('.selected').attr('id'), 'down');
+	});
+
+	$('.main').on('click', '#remove', function(){
+		stopAll();
+		storage.removeFavorite($('.selected').attr('id'));
+		showFavorites();
+	});
+
 	$('.header').on('click','.menu-area',function(){
 		$('.nav').toggle();
 	});
 
 	$('body').on('click', '.add-button', function(){
+		$('.main .favorite-buttons').remove();
+		$('.item').each(function(){
+			$(this).removeClass('favorites');
+		});
 		$('.add-station').toggle();
 	});
 	$('.add-station').on('click', '.cancel', function(){
@@ -570,16 +674,7 @@ function favoritesPage()
 		$(this).toggleClass('danger');
 	});
 
-	$('#up').on('click', function(){
-		storage.moveFavorite($('.favorites .danger').attr('id'), 'up');
-	});
-	$('#down').on('click', function(){
-		storage.moveFavorite($('.favorites .danger').attr('id'), 'down');
-	});
-
-	$('#remove').on('click', function(){
-		storage.removeFavorite($('.favorites .danger').attr('id'));
-	});
+	
 
 	$('#clear').on('click', function(){
 		storage.clearFavorites();	
@@ -784,6 +879,13 @@ function showFavorites(){
 	}
 }*/
 
+function stopAll(){
+	for(i in countdown)
+	{
+		countdown[i].stopCountdown();
+	}
+}
+
 function showFavorites(){
 
 	favorites = storage.getFavorites();
@@ -791,8 +893,9 @@ function showFavorites(){
 	$(".main").text('');
 
 	for (favorite in favorites)
-	{		
+	{	
 		countdown[favorite] = new Timer();
+		clearTimeout(countdown[favorite].timeout);	
 		var lineNum = favorites[favorite].line;
 		lineNum = lineNum.replace("Linija ", "");
 		$(".main").append('<div class="item" id=' + favorite + '><div class="line"><h3>' + lineNum + '</h3></div><div class="direction-station"><p>' + favorites[favorite].direction + '<span class="separator"></span><br class="newline">' + favorites[favorite].station + '</p></div><div class="countdown countdown'+ favorite +'"><h3></h3><span class="next"></span></div></div>');
