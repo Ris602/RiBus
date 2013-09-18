@@ -1,7 +1,3 @@
-/******************
-FAVORITES
-******************/
-
 var Favorites = function(key){
 	this.key = key;
 	this.favorites = null;
@@ -41,7 +37,7 @@ Favorites.prototype.setFavorite = function()
 Favorites.prototype.checkFavorite = function(data)
 {
 
-	this.getFavorites();
+	//this.getFavorites();
 
 	if(typeof(window.localStorage) != 'undefined' && this.favorites != null)
 	{
@@ -59,7 +55,7 @@ Favorites.prototype.checkFavorite = function(data)
 Favorites.prototype.addFavorite = function(data)
 {
 
-	this.getFavorites();
+	//this.getFavorites();
 
 	if(typeof(window.localStorage) != 'undefined' && this.favorites != null)
 	{
@@ -82,7 +78,7 @@ Favorites.prototype.moveFavorite = function(id, move)
 	id = parseInt(id);
 	var selectID = null;
 
-	this.getFavorites();
+	//this.getFavorites();
 
 	if(typeof(window.localStorage) != 'undefined' && this.favorites != null)
 	{
@@ -133,7 +129,7 @@ Favorites.prototype.removeFavorite = function(id)
 	var i = 1;
 	var newFavorites = new Object();
 
-	this.getFavorites();
+	//this.getFavorites();
 	
 
 	if(typeof(window.localStorage) != 'undefined' && this.favorites != null)
@@ -179,11 +175,6 @@ Favorites.prototype.checkError = function()
 	$('.save').prop('disabled', true);
 }
 
-
-/******************
-TIMER
-******************/
-
 var Timer = function(){
 
 	this.line = null;
@@ -195,6 +186,8 @@ var Timer = function(){
 	this.output = null;
 	this.noLine = null;
 	this.timeout = null;
+	this.offset = 0;
+	this.nextTimer = [];
 	
 	this.lineSchedule = null;
 }
@@ -234,19 +227,20 @@ Timer.prototype.getTime = function()
 	if(this.lineSchedule != null)
 	{
 		
+		
 		try
 		{
-			next = this.getNext(timer.h, timer.m)
+			this.getAllNext(timer.h, timer.m);
 		}
 		catch(error)
 		{
-			next = null;
+			this.nextTimer = null;
 		}
-		
-		if(next != null)
+
+		if(this.nextTimer != null)
 		{
-			countdown.h = next[0];
-			countdown.m = next[1];
+			countdown.h = this.nextTimer[this.offset][0];
+			countdown.m = this.nextTimer[this.offset][1];
 			countdown.s = 59;
 
 			if (countdown.s - timer.s < 0){
@@ -286,12 +280,15 @@ Timer.prototype.getTime = function()
 Timer.prototype.getLineSchedule = function(day)
 {
 	if(day == 0){
+		this.lineSchedule = null;
 		this.lineSchedule = schedule[this.line][this.direction]["Nedjelja"];
 	}
 	else if(day == 6){
+		this.lineSchedule = null;
 		this.lineSchedule = schedule[this.line][this.direction]["Subota"];
 	}
 	else{
+		this.lineSchedule = null;
 		this.lineSchedule = schedule[this.line][this.direction]["Radni dan"];
 	}
 }
@@ -312,6 +309,26 @@ Timer.prototype.getNext = function(hour, minute)
 		if(time != null) break;
 	}
 	return time;
+}
+
+Timer.prototype.getAllNext = function(hour, minute)
+{
+	var i = 0;
+	var time = [];
+	for (h in this.lineSchedule){
+		for(m in this.lineSchedule[h]){
+			if(h == hour && this.lineSchedule[h][m] >= minute){
+				time[i] = new Array(h,this.lineSchedule[h][m]);
+				i++;
+			}
+			if(h > hour){
+				time[i] = new Array(h,this.lineSchedule[h][m]);
+				i++;
+			}
+			
+		}
+	}
+	this.nextTimer = time;
 }
 
 Timer.prototype.addZero = function(i)
@@ -343,6 +360,47 @@ Timer.prototype.stopCountdown = function()
 	this.lineSchedule = null;
 	clearTimeout(this.timeout);
 	$(this.element).text("");
+	this.element = null;
+}
+
+Timer.prototype.next = function()
+
+{
+	if(this.offset < this.nextTimer.length)
+	{
+		this.offset += 1;
+		if(this.offset  == this.nextTimer.length)
+		{
+			$('#prev-button').css('display','none');
+		}
+		else
+		{
+			$('#prev-button').css('display','block');
+		}		
+	}
+}
+
+Timer.prototype.prev = function()
+{
+	if(this.offset > 0)
+	{
+		this.offset -= 1;
+
+		if(this.offset == 0)
+		{
+			$('#prev-button').css('display','none');
+		}
+		else
+		{
+			$('#prev-button').css('display','block');
+		}
+	}
+}
+
+Timer.prototype.resetOffset = function()
+{
+	this.offset = 0;
+	$('#prev-button').css('display','none');
 }
 
 Timer.prototype.showSchedule = function(data)
@@ -366,25 +424,29 @@ Timer.prototype.showSchedule = function(data)
 		}
 	}
 
+	var tableHTML = null;
+
 	for(hour in showTime)
 	{
 		var count = 0;
-		$('.schedule tbody').append('<tr></tr>');
-		$('.schedule tbody tr:last-child').append('<td><strong>' + hour + '</strong></td>');
+		tableHTML +='<tr>';
+		tableHTML += '<td><strong>' + hour + '</strong></td>';
 		for(minute in showTime[hour])
 		{
-			$('.schedule tbody tr:last-child').append('<td>' + showTime[hour][minute] + '</td>');
+			tableHTML += '<td>' + showTime[hour][minute] + '</td>';
 			count++;
 		}
 		if (count < max)
 		{
 			while(count < max)
 			{
-				$('.schedule tbody tr:last-child').append('<td></td>');
+				tableHTML += '<td></td>';
 				count++;
 			}
 		}
-		
+		tableHTML +='</tr>';
+
+		$('.schedule tbody').html(tableHTML);
 		
 	}
 
@@ -423,49 +485,44 @@ function indexPage()
 	
 	mainCountdown = new Timer();
 
-	favorites = storage.getFavorites();
+	favorites = null;
+
+	storage.getFavorites();
+
+	favorites = storage.favorites;
 
 	if(typeof(window.localStorage) != 'undefined' && favorites != null)
 	{	
 
+		
 		mainCountdown.startCountdown('.main-countdown', favorites[1]);
 		var data = new Object();
 		data.line = favorites[1]["line"];
 		data.station = favorites[1]["direction"];
 		data.direction = favorites[1]["station"];
 		$('#timerInfo').html('<li>'+favorites[1]["line"]+'</li><li class="active">'+favorites[1]["direction"]+'</li><li class="active">'+favorites[1]["station"]+'</li>');
-		mainCountdown.showSchedule(data);
-
+		if($(document).width() > 540)
+		{
+			mainCountdown.showSchedule(data);
+		}
 		showFavorites();
 		    
 	}
-	else
-	{
-		$('#timerInfo').html('<li class="active">Nema dodanih favorita...</li>');
-		//$('.index').hide();
-		//$('.schedule').hide();
-		//$('#save-bookmark').hide();
-	}
-
-	/*******
-	add-station div
-	*******/
 
 
 	showLine();
 
 	$('.save, .save-button').on('click', function(){
+		stopFavorites();
 		saveBookmark();
 		showFavorites();
 		$('.save-button').css('display', 'none');
 	});
 
-
-	////////////////////////////////
-
 	$(".main").on("click", ".item",function(){
 
 		var id = $(this).attr('id')
+		mainCountdown.resetOffset();
 		mainCountdown.startCountdown('.main-countdown', favorites[id]);
 		$('#timerInfo').html('<li>'+favorites[id]["line"]+'</li><li class="active">'+favorites[id]["direction"]+'</li><li class="active">'+favorites[id]["station"]+'</li>');
 		$('.item').each(function(){
@@ -476,7 +533,10 @@ function indexPage()
 
 		data.line = favorites[id]["line"];
 		data.direction = favorites[id]["direction"]
-		mainCountdown.showSchedule(data);
+		if($(document).width() > 540)
+		{
+			mainCountdown.showSchedule(data);
+		}
 
 		if (!$(this).hasClass('favorites'))
 		{
@@ -494,16 +554,22 @@ function indexPage()
 			});
 		}
 
+		var hTop = (57 * id)-57;
+		$('.main-favorite-buttons').css('display','none');
+		$('.main-favorite-buttons').css({display: 'block', top: hTop+'px'});
+
 
 		
 	});
-	/*
-	$('.schedule thead tr').on('click','#showBody',function(){
-		$('.schedule tbody').toggle();
-		$('.schedule thead tr th .glyphicon-chevron-up').toggle();
-		$('.schedule thead tr th .glyphicon-chevron-down').toggle();
+
+	var hammermain = $(".timer").hammer();
+
+	hammermain.on("dragleft", function(){
+		mainCountdown.next();
 	});
-	*/
+	hammermain.on("dragright", function(){
+		mainCountdown.prev();
+	});
 
 	var hammertime = $(".main").hammer();
 
@@ -517,6 +583,7 @@ function indexPage()
 			$(this).append('<div class="favorite-buttons"><ul><li id="remove"><img src="img/remove.png"></li><li id="up"><img src="img/up.png"></li><li id="down"><img src="img/down.png"></li></ul></div>');
 
 			var id = $(this).attr('id')
+			mainCountdown.resetOffset();
 			mainCountdown.startCountdown('.main-countdown', favorites[id]);
 			$('#timerInfo').html('<li>'+favorites[id]["line"]+'</li><li class="active">'+favorites[id]["direction"]+'</li><li class="active">'+favorites[id]["station"]+'</li>');
 			$('.item').each(function(){
@@ -528,7 +595,10 @@ function indexPage()
 
 			data.line = favorites[id]["line"];
 			data.direction = favorites[id]["direction"]
-			mainCountdown.showSchedule(data);
+			if($(document).width() > 540)
+			{
+				mainCountdown.showSchedule(data);
+			}
 		}
 		else
 		{
@@ -554,6 +624,7 @@ function indexPage()
 	  	$(this).after('<table class="schedule"><thead><tr><th>h</th><th colspan="9">Min</th></tr></thead><tbody></tbody></table>');
 
 		var id = $(this).attr('id')
+		mainCountdown.resetOffset();
 		mainCountdown.startCountdown('.main-countdown', favorites[id]);
 		$('#timerInfo').html('<li>'+favorites[id]["line"]+'</li><li class="active">'+favorites[id]["direction"]+'</li><li class="active">'+favorites[id]["station"]+'</li>');
 		
@@ -573,18 +644,26 @@ function indexPage()
 	});
 
 	$('.main').on('click', '#up', function(){
-		stopAll();
+		stopFavorites();
 		storage.moveFavorite($('.selected').attr('id'), 'up');
 	});
 	$('.main').on('click', '#down', function(){
-		stopAll();
+		stopFavorites();
 		storage.moveFavorite($('.selected').attr('id'), 'down');
 	});
 
 	$('.main').on('click', '#remove', function(){
-		stopAll();
+		stopFavorites();
 		storage.removeFavorite($('.selected').attr('id'));
 		showFavorites();
+	});
+
+	$('.timer').on('click', '.next-touch', function(){
+		mainCountdown.next();
+	});
+
+	$('.timer').on('click', '.prev-touch', function(){
+		mainCountdown.prev();
 	});
 
 	$('.header').on('click','.menu-area',function(){
@@ -596,10 +675,11 @@ function indexPage()
 		$('.item').each(function(){
 			$(this).removeClass('favorites');
 		});
-		$('.add-station').toggle();
+		$('.add-station').css('display','block');
 	});
+
 	$('.add-station').on('click', '.cancel', function(){
-		$('.add-station').toggle();
+		$('.add-station').css('display','none');
 	});
 
 	$('body').on('click', '.lines', function(){
@@ -613,73 +693,9 @@ function indexPage()
 	$('body').on('click', '.lines-img', function(){
 		$('.lines-img').toggle();
 	});
-	
-}
 
-
-function stationPage()
-{
-	
-	displayCountdown = new Timer();
-
-	for(line in lines)
-	{
-		$("#line").append('<option value="' + line + '">' + line + '</option>');
-	}
-
-	$("#line").on('change',function(){
-		showDirections($('#line').val());
-		$('.save').prop('disabled', true);
-	});
-
-	$('.save').on('click', function(){
-		saveBookmark();
-	});
-}
-
-function schedulePage()
-{
-	for(line in lines)
-	{
-		$("#line").append('<option value="' + line + '">' + line + '</option>');
-	}
-
-	$("#line, #day").on('change',function(){
-
-		showDaySchedule($('#line').val(),$('#day').val());
-
-	});
-}
-
-function favoritesPage()
-{
-	
-	var favorites = storage.getFavorites();
-
-	if(typeof(window.localStorage) != 'undefined' && favorites != null)
-	{		
-		$('.check').hide();
-		showFavorites();   
-	}
-	else
-	{
-		$('.favorites').hide();
-		$('.tools').hide();
-	}
-
-	$(".favorites tbody").on("click", "tr",function(){
-		$('.favorites tbody tr').each(function(){
-			$(this).removeClass('danger');
-		});
-		$(this).toggleClass('danger');
-	});
 
 	
-
-	$('#clear').on('click', function(){
-		storage.clearFavorites();	
-	});
-
 }
 
 function showLine()
@@ -709,8 +725,9 @@ function showLine()
 
 function showDirections(line)
 {
+	var directions = null;
 
-	var directions = lines[line];
+	directions = lines[line];
 
 	$(".select-direction").html("<option>Smjer</option>");
 	$(".select-station").html("<option>Stanica</option>");
@@ -742,7 +759,9 @@ function showDirections(line)
 
 function showStations(line, direction)
 {
-	var stations = lines[line][direction];
+	var stations = null;
+
+	stations = lines[line][direction];
 
 	
 	$(".aside .select-station").html("<option>Stanica</option>");
@@ -757,14 +776,18 @@ function showStations(line, direction)
 
 		$(".overlay .select-station").val($(this).val());
 
-		var data = getData();
+		var data = null;
+		data = getData();
 
 		$('#timerInfo').html('<li>'+data.line+'</li><li class="active">'+data.direction+'</li><li class="active">'+data.station+'</li>');
 
 
+		mainCountdown.resetOffset();
 		mainCountdown.startCountdown('.main-countdown', data);
-		mainCountdown.showSchedule(data);
-
+		if($(document).width() > 540)
+		{
+			mainCountdown.showSchedule(data);
+		}
 
 		if(!storage.checkFavorite(data))
 		{
@@ -775,22 +798,25 @@ function showStations(line, direction)
 		{
 			$('.save').prop('disabled', true);
 			$('.save-button').css('display', 'none');
-		}	
+		}
 	});
 
 	$(".overlay .select-station").on('change',function(){
 
 		$(".aside .select-station").val($(this).val());
+		$(".overlay .add-station").css('display', 'none');
 
-		$(".overlay .add-station").toggle();
-
-		var data = getData();
+		var data = null; 
+		data = getData();
 
 		$('#timerInfo').html('<li>'+data.line+'</li><li class="active">'+data.direction+'</li><li class="active">'+data.station+'</li>');
-
+		mainCountdown.resetOffset();
 		mainCountdown.startCountdown('.main-countdown', data);
-		mainCountdown.showSchedule(data);
-
+		if($(document).width() > 540)
+		{
+			mainCountdown.showSchedule(data);
+		}
+		
 		if(!storage.checkFavorite(data))
 		{
 			$('.save').prop('disabled', false);
@@ -800,7 +826,7 @@ function showStations(line, direction)
 		{
 			$('.save').prop('disabled', true);
 			$('.save-button').css('display', 'none');
-		}	
+		}
 	});
 
 }
@@ -839,7 +865,10 @@ function showDaySchedule(line, day){
 		}
 		else
 		{
-			var showTime = schedule[line][direction][day];
+
+			var showTime = null;
+			showTime = schedule[line][direction][day];
+
 			$('.error').text("");
 			$('.select-direction'+ i +'-table tbody').text("");
 			$('.select-direction'+ i).text(direction);
@@ -858,28 +887,9 @@ function showDaySchedule(line, day){
 	}
 	
 }
-/*
-function showFavorites(){
 
-	var i = 1;
-	var countdown = [];
-	displayCountdown = new Timer();
 
-	var favorites = storage.getFavorites();
-
-	$(".favorites tbody").text("");
-
-	for (favorite in favorites)
-	{		
-		countdown[i] = new Timer();
-		var lineNum = favorites[favorite].line;
-		lineNum = lineNum.replace("Linija ", "");
-		$(".favorites").append("<tr id='"+i+"'><td>" + lineNum + "</td><td>" +favorites[favorite].direction + "</td><td>  " + favorites[favorite].station + "  </td></tr>");
-		i++;
-	}
-}*/
-
-function stopAll(){
+function stopFavorites(){
 	for(i in countdown)
 	{
 		countdown[i].stopCountdown();
@@ -888,7 +898,9 @@ function stopAll(){
 
 function showFavorites(){
 
-	favorites = storage.getFavorites();
+	favorites = null;
+
+	favorites = storage.favorites;
 
 	$(".main").text('');
 
@@ -898,9 +910,18 @@ function showFavorites(){
 		clearTimeout(countdown[favorite].timeout);	
 		var lineNum = favorites[favorite].line;
 		lineNum = lineNum.replace("Linija ", "");
+		lineNum = lineNum.replace("A","<small>A</small>");
+		lineNum = lineNum.replace("B","<small>B</small>");
+		lineNum = lineNum.replace("00","<small>00</small>");
+		lineNum = lineNum.replace("01","<small>01</small>");
+		lineNum = lineNum.replace("02","<small>02</small>");
+
 		$(".main").append('<div class="item" id=' + favorite + '><div class="line"><h3>' + lineNum + '</h3></div><div class="direction-station"><p>' + favorites[favorite].direction + '<span class="separator"></span><br class="newline">' + favorites[favorite].station + '</p></div><div class="countdown countdown'+ favorite +'"><h3></h3><span class="next"></span></div></div>');
 		countdown[favorite].startCountdown('.countdown' + favorite + ' h3', favorites[favorite]);
 	} 
+
+	$(".main").append('<div class="main-favorite-buttons"><ul><li id="remove"><img src="img/remove.png"></li><li id="up"><img src="img/up.png"></li><li id="down"><img src="img/down.png"></li></ul></div>');
+
 
 }
 

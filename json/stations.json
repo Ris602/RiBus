@@ -112,7 +112,17 @@
 			"Strmica": 19
 		},
 		"Tower":{
-			"Strmica": 0
+			"Strmica": 0,
+			"Rose Leard": 1,
+			"Vrlije": 1,
+			"Trsat": 3,
+			"Trsat Groblje": 4,
+			"S.Krautzeka I": 5,
+			"S.Krautzeka II": 6,
+			"M.Kontuša": 8,
+			"O.Š.Podvežica": 9,
+			"Radnička": 10,
+			"Tower": 12
 		}
 	},
 	"Linija 2":{
@@ -349,10 +359,20 @@
 	},
 	"Linija 4A":{
 		"Pulac":{
-			"Brašćine": 0
+			"Brašćine": 0,
+			"Internacionalnih Brigada": 2,
+			"Galenski Laboratorij": 4,
+			"Pulac I": 5,
+			"Pulac II": 7,
+			"Vrh Pulca": 8
 		},
 		"Brašćine":{
-			"Pulac": 0
+			"Vrh Pulaca": 0,
+			"Pulac II": 1,
+			"Pulac I": 3,
+			"Galenski Laboratorij": 4,
+			"Internacionalnih Brigada": 6,
+			"Brašćine": 8
 		}
 	},
 	"Linija 5":{
@@ -408,7 +428,11 @@
 	},
 	"Linija 5A":{
 		"Tibljaši":{
-			"Dražmička": 0
+			"Osječka - Dražmička": 0,
+			"Osječka - Crkva": 1,
+			"Škurinjska Cesta I": 3,
+			"Škurinje Spomenik": 5,
+			"Tibljaši": 8
 		},
 		"Dražmička":{
 			"Tibljaši": 0,
@@ -417,23 +441,29 @@
 			"Škurinjska Cesta I": 5,
 			"Škurinje Škola": 6,
 			"Osječka - Crkva": 8,
-			"Osječka - Drežnička": 8,
-			"Osječka - Zaobilaznica": 11,
-			"Osječka - Lipa": 11,
-			"Osječka - C.Ilijassich": 13,
-			"Osječka - Mihačeva Draga": 13,
-			"Osječka - F.Kresnika": 14,
-			"1.maja": 16,
-			"Nikole Tesle": 17,
-			"Željeznički Kolodvor": 18
+			"Osječka - Drežnička": 8
 		}
 	},
 	"Linija 5B":{
 		"Petrici":{
-			"Drenova": 0
+			"Drenova": 0,
+			"Benaši - B.Francetića": 2,
+			"B.Francetića - Pašćevac": 3,
+			"B.Francetića - Tonići": 3,
+			"B.Francetića": 5,
+			"Kablarska Cesta": 6,
+			"Kablari": 7,
+			"Petrici": 9
 		},
 		"Drenova":{
-			"Petrici": 0
+			"Petrici": 0,
+			"Kablari": 2,
+			"Kablarska Cesta": 3,
+			"B.Francetića": 4,
+			"B.Francetića - Tonići": 6,
+			"B.Francetića - Pašćevac": 6,
+			"Benaši - B.Francetića": 7,
+			"Drenova": 9
 		}
 	},
 	"Linija 6":{
@@ -652,22 +682,50 @@
 			"Sveučilišna avenija": 13
 		},
 		"Jelačićev Trg":{
-			"Kampus": 0
+			"Kampus": 0,
+			"Slavka Krautzeka I": 1,
+			"Slavka Krautzeka II": 1,
+			"Teta Roža": 3,
+			"Kumičićeva": 4,
+			"Sušački Neboder": 7,
+			"Fiumara": 8,
+			"Jelačićev Trg": 11
 		}
 	},
 	"Linija 9":{
 		"Sv.Kuzam":{
-			"Martina Kontuša": 0
+			"Martina Kontuša": 0,
+			"Podvežica Centar": 1,
+			"Zdravka Kučića III": 3,
+			"Sveta Ana": 3,
+			"Podohrušvom": 5,
+			"Orlići I": 7,
+			"Orlići II": 8,
+			"Draga Brig": 9,
+			"Sv.Jakov": 10,
+			"Tijani": 13,
+			"Sv.Kuzam": 15,
+			"Sv.Kuzam Okretište": 15
 		},
 		"Martina Kontuša":{
-			"Sv.Kuzam": 0
+			"Sv.Kuzam Okretište": 0,
+			"Sv.Kuzam": 1,
+			"Tijani": 3,
+			"Sv.Jakov": 5,
+			"Draga Brig": 6,
+			"Orlići II": 8,
+			"Orlići I": 8,
+			"Podohrušvom": 10,
+			"Sv.Ana": 12,
+			"KBC Sušak": 13,
+			"Martina Kontuša": 15
 		}
 	},
 	"Linija 13":{
 		"Grohovo":{
 			"Delta": 0
 		},
-		"Grohovo - Delta":{
+		"Delta":{
 			"Grohovo": 0
 		}
 	},
