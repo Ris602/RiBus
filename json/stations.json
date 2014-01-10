@@ -941,5 +941,20 @@
 			"Tržnica": 25,
 			"Jelačićev Trg": 25
 		}
+	},
+	"Linija 10":{
+		"Delta - Šoići":{
+			"Delta": 0,
+			"Pećine": 5,
+			"Sv.Lucija": 10,
+			"Šoići": 20
+		},
+		"Šoići - Delta":{
+			"Šoići": 0,
+			"Urinj": 3,
+			"Glavani P": 10,
+			"Fiumara": 20,
+			"Delta": 22
+		}
 	}
 }
